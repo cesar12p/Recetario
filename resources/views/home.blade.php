@@ -14,7 +14,7 @@
                         </div>
                     @endif
 
-                    You are logged in!
+                    Mi Perfil para ver mis Recetas
                 </div>
             </div>
         </div>
