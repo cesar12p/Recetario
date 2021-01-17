@@ -67,7 +67,8 @@ class HomeController extends Controller
         return $response;
     }
     public function showRecipe(Request $request){
-        echo $request->id;
-        return view('watchrecipe');
+        $idRecipe = $request->id;
+        $ShowMeThisRecipe = recipe::where('id','=',$idRecipe)->get();
+        return view('watchRecipe',['Recipes'=>$ShowMeThisRecipe]);
     }
 }

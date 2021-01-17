@@ -22,4 +22,4 @@ Route::get('/','recipeController@index');
 Route::get('/home', 'HomeController@index')->name('home');
 Route::post('/home', 'HomeController@store')->name('home.store');
 Route::get('store_image/fetch_image/{id}','HomeController@fetch_image');
-Route::get('/Show{title}','HomeController@showRecipe')->name('home.show');
+Route::get('/{title}','HomeController@showRecipe')->name('home.show');
