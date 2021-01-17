@@ -12,7 +12,14 @@
 */
 
 Route::get('/','recipeController@index');
-
+Route::get('publicRecipes/fetch_image/{id}','recipeController@fetch_image');
 Auth::routes();
+Route::get('Add', function () {
+    return view('NewRecipe');
+});
 
+Route::get('/','recipeController@index');
 Route::get('/home', 'HomeController@index')->name('home');
+Route::post('/home', 'HomeController@store')->name('home.store');
+Route::get('store_image/fetch_image/{id}','HomeController@fetch_image');
+Route::get('/Show{title}','HomeController@showRecipe')->name('home.show');
