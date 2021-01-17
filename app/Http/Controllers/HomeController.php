@@ -1,8 +1,13 @@
 <?php
 
 namespace App\Http\Controllers;
-
+use App\User;
+use App\recipe;
+use Illuminate\Support\Facades\Auth;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Response;
+use App\Images;
+use Image;
 
 class HomeController extends Controller
 {
@@ -23,6 +28,47 @@ class HomeController extends Controller
      */
     public function index()
     {
-        return view('home');
+        $id = Auth::id();
+        $recipes = recipe::where('user_id','=',$id)->get();
+        return view('home',['recipes'=>$recipes]);
+    }
+
+    public function store(Request $request){
+        $request->validate([
+            'image' => 'required|image|max:2048'
+           ]);
+        $id = Auth::id();
+        $image_file = $request->image;
+        $image = Image::make($image_file);
+        Response::make($image->encode('jpeg'));
+        recipe::create([
+            'user_id'=>$id,
+            'title'=>$request->title,
+            'ingredients'=>$request->ingredients,
+            'instructions'=>$request->instructions,
+            'image'=>$image
+        ]);
+        
+        $recipes = recipe::where('user_id','=',$id)->get();
+        return view('home',['recipes'=>$recipes]);
+    }
+
+    function fetch_image($image_id)
+    {
+        
+        $image = recipe::findOrFail($image_id);
+
+        $image_file = Image::make($image->image);
+        
+        $response = Response::make($image_file->encode('jpeg'));
+        
+        $response->header('Content-Type', 'image/jpeg');
+        
+        return $response;
+    }
+    public function showRecipe(Request $request){
+        $idRecipe = $request->id;
+        $ShowMeThisRecipe = recipe::where('id','=',$idRecipe)->get();
+        return view('watchRecipe',['Recipes'=>$ShowMeThisRecipe]);
     }
 }
