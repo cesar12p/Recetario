@@ -15,7 +15,7 @@ Route::get('/','recipeController@index');
 Route::get('publicRecipes/fetch_image/{id}','recipeController@fetch_image');
 Auth::routes();
 Route::get('Add', function () {
-    return view('NewRecipe');
+    return view('newRecipe');
 });
 
 Route::get('/','recipeController@index');
