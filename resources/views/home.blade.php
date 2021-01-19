@@ -44,7 +44,10 @@
                             </div>
                             <!--Columna Eliminar -->
                             <div class="col">
-                                <button type="submit" class="btn btn-primary">X</button>
+                                <form action="{{route('home.delete', $recipe->id)}}">
+                                    @csrf
+                                    <button type="submit" class="btn btn-primary">X</button>
+                                </form>
                             </div>
                         </div>
                     </div>

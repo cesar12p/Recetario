@@ -8,7 +8,7 @@ use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Response;
 use App\Images;
 use Image;
-
+use DB;
 class HomeController extends Controller
 {
     /**
@@ -50,6 +50,7 @@ class HomeController extends Controller
         ]);
         
         $recipes = recipe::where('user_id','=',$id)->get();
+        
         return view('home',['recipes'=>$recipes]);
     }
 
@@ -70,5 +71,16 @@ class HomeController extends Controller
         $idRecipe = $request->id;
         $ShowMeThisRecipe = recipe::where('id','=',$idRecipe)->get();
         return view('watchrecipe',['Recipes'=>$ShowMeThisRecipe]);
+    }
+
+    public function destroy($id){
+        
+
+       // $receta = recipe::delete($id);
+       DB::table('recipes')->delete($id);
+        
+        return redirect()->route('home');
+        
+
     }
 }
