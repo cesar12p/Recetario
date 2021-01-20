@@ -1,5 +1,6 @@
 <?php
-
+use App\recipe;
+use Illuminate\Http\Request;
 /*
 |--------------------------------------------------------------------------
 | Web Routes
@@ -22,4 +23,12 @@ Route::get('/','recipeController@index');
 Route::get('/home', 'HomeController@index')->name('home');
 Route::post('/home', 'HomeController@store')->name('home.store');
 Route::get('store_image/fetch_image/{id}','HomeController@fetch_image');
+Route::get('/home/edit/image/fetch_image/{id}','HomeController@fetch_image');
 Route::get('/{title}','HomeController@showRecipe')->name('home.show');
+Route::get('/home/edit/{id}', function (Request $request) {
+    $Recipe = recipe::where('id','=',$request->id)->get();
+    return view('editRecipe',['Datos'=>$Recipe]);
+})->name('home.edit');
+Route::post('/home/save','HomeController@editRecipe')->name('home.saveEdit');
+
+
