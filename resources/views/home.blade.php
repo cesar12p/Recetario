@@ -40,7 +40,11 @@
                             
                             <!--Columna Editar -->
                             <div class="col">
-                                <button type="submit" class="btn btn-primary">Edit</button>
+                                
+                                <form action="{{route('home.edit', ['id'=>$recipe->id])}}">
+                            
+                                    <button type="submit" class="btn btn-primary">Editar</button>
+                                </form>
                             </div>
                             <!--Columna Eliminar -->
                             <div class="col">
