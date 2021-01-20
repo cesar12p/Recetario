@@ -1,65 +1,49 @@
 @extends('layouts.app')
-
 @section('content')
-<div class="container">
-    <div class="row justify-content-center">
-        <div class="col-md-8">
-            <div class="card">
-                <div class="card-header">Mis Recetas
-                    <div class="text-right">
-                        
-                        <a href="{{ url('Add') }}"><input class="btn btn-success" type="button" value="Nueva Receta"></a>
+    <div class="container">
+        <div class="row justify-content-center">
+            <div class="col-md-1">
+                <a href="{{ url('Add') }}"><button type="submit" class="btn"><img src="https://img.icons8.com/color/48/4a90e2/plus--v1.png"/>Nueva Receta</button></a>
+            </div>
+            <div class="col-md-8">
+                <div class="card alert-info">
+                    <div class="card-header alert-dark mb-3 text-center">
+                        <strong>Mis Recetas</strong>
                     </div>
-                    
-                </div>
-
-                <div class="card-body">
-                    @if (session('status'))
-                        <div class="alert alert-success" role="alert">
-                            {{ session('status') }}
-                        </div>
-                    @endif
-                    @foreach($recipes as $recipe)
-                    <!--Seccion de Recetas recientes-->
-                    
-                    <div class="container text-center col-10">
-                        <div class="row">
-                            <a href="{{ route('home.show', ['id'=>$recipe->id,'title'=>$recipe->title]) }}" >
-                             
-                                    <!--Columna Titulo-->
-                                    <div class="col text-left">
-                                        <p>{{ $recipe->title}}</p>
-                                    </div>
-                                    
-                                    <!--Columna Imagen-->
-                                    <div class="col">
-                                        <img src="store_image/fetch_image/{{ $recipe->id }}"  class="img-thumbnail" width="75" />
-                                    </div>
-                                
-                            </a>
-                            
-                            <!--Columna Editar -->
-                            <div class="col">
-                                
+                    <div class="container ">
+                        <div class="row p-1 mb-1">
+                            @if (session('status'))
+                                <div class="alert alert-success" role="alert">
+                                    {{ session('status') }}
+                                </div>
+                            @endif
+                            @foreach($recipes as $recipe)
+                            <div class="col-3 col-md-3 text-center mb-2 bg-white text-dark">
+                                <a class="text-white" href="{{ route('home.show', ['id'=>$recipe->id,'title'=>$recipe->title]) }}">
+                                    <img src="store_image/fetch_image/{{ $recipe->id }}"  class="rounded-circle" width="100%" />   
+                                </a>
+                            </div>
+                            <div class="col-3 col-md-5 text-center mb-2 bg-white text-dark">
+                                <a href="{{ route('home.show', ['id'=>$recipe->id,'title'=>$recipe->title]) }}">
+                                <strong>{{ $recipe->title}}</strong>
+                                </a>
+                            </div>
+                            <div class="col-3 col-md-2 text-right mb-2 bg-white text-dark">
                                 <form action="{{route('home.edit', ['id'=>$recipe->id])}}">
-                            
-                                    <button type="submit" class="btn btn-primary">Editar</button>
+                                <button type="submit" class="btn"><img src="https://img.icons8.com/officel/40/4a90e2/edit-property.png"/>Editar</button>
                                 </form>
                             </div>
-                            <!--Columna Eliminar -->
-                            <div class="col">
+                            <div class="col-3 col-md-2 text-right mb-2 bg-white text-dark">
                                 <form action="{{route('home.delete', $recipe->id)}}">
-                                    @csrf
-                                    <button type="submit" class="btn btn-primary">X</button>
+                                @csrf
+                                <button type="submit" class="btn"><img src="https://img.icons8.com/fluent/48/000000/cancel.png"/>Eliminar</button>
                                 </form>
                             </div>
+                            @endforeach
                         </div>
-                    </div>
-                    @endforeach
-                   
+                    </div> 
                 </div>
             </div>
         </div>
     </div>
-</div>
 @endsection

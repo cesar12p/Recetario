@@ -5,14 +5,14 @@
 <div class="container">
     <div class="row justify-content-center">
         <div class="col-md-8">
-            <div class="card">
+            <div class="card alert-info">
                 <form action="{{route('home.store')}}" method="POST" enctype="multipart/form-data">
-                <div class="card-header">
+                <div class="card-header alert-dark">
                     Titulo
                     <input class="form-control form-control-lg" name="title" type="text" placeholder="">
                 </div>
                 
-                <div class="container">
+                <div class="container ">
                     <div class="row">
                         <div class="col-12 col-lg-6">
                             Igredientes
@@ -34,7 +34,7 @@
                     <br>
                     <div class="col text-center">
                     @csrf
-                    <button type="submit" class="btn btn-primary">Guardar</button>
+                    <button type="submit" class="btn"><img src="https://img.icons8.com/color/48/000000/save--v2.png"/>Guardar</button>
                     </div>
                     
                 </div>
