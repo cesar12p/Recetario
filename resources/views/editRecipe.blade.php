@@ -9,7 +9,7 @@
             
 			<div class="row">
 				<div class="col-md-6 text-center text-primary">
-                    <img src="store_image/fetch_image/{{ $Datos[0]->id}}"  class="img-fluid"  />
+                    <img src="image/fetch_image/{{ $Datos[0]->id}}"  class="img-fluid"  />
 				</div>
 				<div class="col-md-6">
 					<h5 class="text-center">
