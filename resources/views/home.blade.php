@@ -40,7 +40,7 @@
                             
                             <!--Columna Editar -->
                             <div class="col">
-                                <button type="submit" class="btn btn-primary">Edit</button>
+                                <button type="submit" class="btn btn-primary"><a href="{{ route('home.edit',['id' => $recipe] )}}">Editar</a></button>
                             </div>
                             <!--Columna Eliminar -->
                             <div class="col">
