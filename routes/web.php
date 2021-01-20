@@ -33,3 +33,4 @@ Route::get('/home/edit/{id}', function (Request $request) {
 Route::post('/home/save','HomeController@editRecipe')->name('home.saveEdit');
 
 
+Route::get('/home/delete/{id}', 'HomeController@destroy')->name('home.delete');
