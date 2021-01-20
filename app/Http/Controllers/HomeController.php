@@ -8,7 +8,7 @@ use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Response;
 use App\Images;
 use Image;
-
+use DB;
 class HomeController extends Controller
 {
     /**
@@ -73,6 +73,25 @@ class HomeController extends Controller
     }
 
     public function editRecipe(Request $request){
-        
+        if($request->image==null){
+            recipe::where('id', $request->idRecipe)
+            ->update([
+                    'title' => $request->title,
+                    'ingredients'=>$request->ingredients,
+                    'instructions'=>$request->instructions,
+                    ]);
+        }else{
+            $image_file = $request->image;
+            $image = Image::make($image_file);
+            Response::make($image->encode('jpeg'));
+            recipe::where('id', $request->idRecipe)
+            ->update([
+                    'title' => $request->title,
+                    'ingredients'=>$request->ingredients,
+                    'instructions'=>$request->instructions,
+                    'image'=>$image
+                    ]);
+        }
+        return redirect()->route('home');
     }
 }

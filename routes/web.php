@@ -29,5 +29,6 @@ Route::get('/home/edit/{id}', function (Request $request) {
     $Recipe = recipe::where('id','=',$request->id)->get();
     return view('editRecipe',['Datos'=>$Recipe]);
 })->name('home.edit');
+Route::post('/home/save','HomeController@editRecipe')->name('home.saveEdit');
 
 
