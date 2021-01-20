@@ -25,6 +25,7 @@ Route::post('/home', 'HomeController@store')->name('home.store');
 Route::get('store_image/fetch_image/{id}','HomeController@fetch_image');
 Route::get('/home/edit/image/fetch_image/{id}','HomeController@fetch_image');
 Route::get('/{title}','HomeController@showRecipe')->name('home.show');
+Route::get('/home/delete/{id}', 'HomeController@destroy')->name('home.delete');
 Route::get('/home/edit/{id}', function (Request $request) {
     $Recipe = recipe::where('id','=',$request->id)->get();
     return view('editRecipe',['Datos'=>$Recipe]);

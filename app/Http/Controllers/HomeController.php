@@ -50,6 +50,7 @@ class HomeController extends Controller
         ]);
         
         $recipes = recipe::where('user_id','=',$id)->get();
+        
         return view('home',['recipes'=>$recipes]);
     }
 
@@ -93,5 +94,16 @@ class HomeController extends Controller
                     ]);
         }
         return redirect()->route('home');
+    }
+
+    public function destroy($id){
+        
+
+       // $receta = recipe::delete($id);
+       DB::table('recipes')->delete($id);
+        
+        return redirect()->route('home');
+        
+
     }
 }
