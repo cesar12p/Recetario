@@ -40,10 +40,12 @@
                                 </form>
                             </div>
                             @endforeach
+                            {{ $recipes->links() }}
                         </div>
                     </div> 
                 </div>
             </div>
         </div>
+        
     </div>
 @endsection

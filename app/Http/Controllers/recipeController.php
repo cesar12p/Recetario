@@ -11,7 +11,7 @@ use Image;
 class recipeController extends Controller
 {
     public function index(){
-        $recipes = recipe::latest()->get();
+        $recipes = recipe::paginate(6);
         return view('welcome',['recipes'=>$recipes]);
     }
     

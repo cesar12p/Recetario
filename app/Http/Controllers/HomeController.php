@@ -29,7 +29,7 @@ class HomeController extends Controller
     public function index()
     {
         $id = Auth::id();
-        $recipes = recipe::where('user_id','=',$id)->get();
+        $recipes = recipe::where('user_id','=',$id)->paginate(3);
         return view('home',['recipes'=>$recipes]);
     }
 

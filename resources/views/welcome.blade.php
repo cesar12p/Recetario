@@ -16,9 +16,11 @@
                         <img src="publicRecipes/fetch_image/{{ $recipe->id }}"  class="rounded-circle" width="50%" />
                         {{ $recipe->title}}
                     </a>
-                </div>   
-                                                  
-            @endforeach                    
+                </div>                          
+            @endforeach     
+        </div>
+        <div class="col-12 text-center">
+            {{ $recipes->links() }}
         </div>
     </div>
 @endsection
