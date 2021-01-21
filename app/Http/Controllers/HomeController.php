@@ -35,7 +35,10 @@ class HomeController extends Controller
 
     public function store(Request $request){
         $request->validate([
-            'image' => 'required|image|max:2048'
+            'title' => 'required|string|max:255',
+            'image' => 'required|image|max:2048|mimes:jpg,jpeg,bmp,png',
+            'ingredients' => 'required|string|max:2000',
+            'instructions' => 'required|string|max:2000',
            ]);
         $id = Auth::id();
         $image_file = $request->image;
@@ -51,7 +54,7 @@ class HomeController extends Controller
         
         $recipes = recipe::where('user_id','=',$id)->get();
         
-        return view('home',['recipes'=>$recipes]);
+        return redirect()->route('home');
     }
 
     function fetch_image($image_id)
@@ -106,4 +109,6 @@ class HomeController extends Controller
         
 
     }
+
+   
 }

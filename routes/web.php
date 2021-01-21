@@ -14,6 +14,7 @@ use Illuminate\Http\Request;
 
 Route::get('/','recipeController@index');
 Route::get('publicRecipes/fetch_image/{id}','recipeController@fetch_image');
+
 Auth::routes();
 Route::get('Add', function () {
     return view('newRecipe');
@@ -33,3 +34,5 @@ Route::post('/home/save','HomeController@editRecipe')->name('home.saveEdit');
 
 
 Route::get('/home/delete/{id}', 'HomeController@destroy')->name('home.delete');
+Route::get('/home/see/{id}', 'recipeController@see')->name('home.see');
+Route::get('/home/see/fetch_image/{id}','recipeController@fetch_image');
