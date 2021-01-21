@@ -20,7 +20,7 @@
                             @foreach($recipes as $recipe)
                             <div class="col-3 col-md-3 text-center mb-2 bg-white text-dark">
                                 <a class="text-white" href="{{ route('home.show', ['id'=>$recipe->id,'title'=>$recipe->title]) }}">
-                                    <img src="store_image/fetch_image/{{ $recipe->id }}"  class="rounded-circle" width="100%" />   
+                                    <img src="store_image/fetch_image/{{ $recipe->id }}"  class="rounded-circle" style="height: 6rem;" width="100%" />   
                                 </a>
                             </div>
                             <div class="col-3 col-md-5 text-center mb-2 bg-white text-dark">
