@@ -7,6 +7,7 @@ use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Response;
 use App\Images;
 use Image;
+use DB;
 
 class recipeController extends Controller
 {
@@ -27,5 +28,14 @@ class recipeController extends Controller
         $response->header('Content-Type', 'image/jpeg');
         
         return $response;
+    }
+
+    public function see($id){
+        
+       $recipe = recipe::where('id','=',$id)->first();
+
+       
+
+        return view('seeRecipe', compact('recipe'));
     }
 }
