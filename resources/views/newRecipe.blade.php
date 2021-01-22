@@ -36,7 +36,7 @@
                     <div class="col-12">
                         Adjuntar Foto
                         <div class="border">
-                            <input type="file" name="image" />
+                            <input type="file" name="image"/>
                             @if ($errors->first('image'))
                             <div class="text-danger">{{$errors->first('image')}}</div>
                           @endif
