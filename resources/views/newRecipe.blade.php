@@ -38,7 +38,7 @@
                         <div class="border">
                             <input type="file" name="image" id="file"/>
                             <hr>
-                            <div id="preview"></div>
+                            <div id="preview" ></div>
                             @if ($errors->first('image'))
                             <div class="text-danger">{{$errors->first('image')}}</div>
                           @endif
@@ -59,4 +59,9 @@
     </div>
 </div>
 
+@section('scripts')
+    <script src="{{asset('js/visualizador.js')}}"></script>
 @endsection
+
+@endsection
+
