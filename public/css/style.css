@@ -1,0 +1,10 @@
+/* Visualizador  */
+#preview {
+    border:1px solid #ddd;
+    padding:5px;
+    border-radius:2px;
+    background:#d1ecf1;
+    max-width:200px;
+  }
+  
+  #preview img {width:100%;display:block;}

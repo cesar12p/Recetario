@@ -6,29 +6,29 @@
             {{ session('status') }}
         </div>
     @endif
-    
-    <div class="container px-lg-5 alert-warning text-center">
-        <strong>{{$recipe->title}}</strong>
-        <div class="row mx-lg-n5 p-3 mb-2">            
-            
-            <img src="/home/see/fetch_image/{{ $recipe->id }}" class="rounded mx-auto d-block" alt="...">  
-            
-            
-        </div>
-
-        <div class="panel panel-primary mb-10">
-            <div class="panel-heading">Ingredientes:</div>
-            <div class="panel-body">
-                {{$recipe->ingredients}}
+    <div class="container ">
+        <div class="row justify-content-center">
+            <div class="col-md-8">
+                <div class="card alert-info">
+                    <div class="card-header alert-dark text-center mb-2">
+                        <strong>{{$recipe->title}}</strong>
+                    </div>
+                    <div class="container alert-info">
+                        <div class="row ">
+                            <div class="col-12 col-lg-6 text-center">
+                                <img src="/home/see/fetch_image/{{$recipe->id}}"  class="rounded-circle" width="50%" />
+                            </div>
+                            <div class="col-12 col-lg-6 text-center">
+                                <strong class="">Igredientes</strong>
+                                <textarea class="form-control bg-light text-dark" name="ingredients" rows="7" readonly> {{ $recipe->ingredients }}</textarea>
+                            </div>
+                        </div>
+                        <div class="col-12 mb-2 text-center">
+                            <strong>Proceso</strong>
+                            <textarea class="form-control bg-light text-dark" name="instructions" rows="7"  readonly>{{ $recipe->instructions}}</textarea>
+                        </div>
+                </div>
             </div>
         </div>
-
-        <div class="panel panel-primary">
-            <div class="panel-heading">Procedimiento:</div>
-            <div class="panel-body">
-                {{$recipe->instructions}}
-            </div>
-        </div>
-        
     </div>
 @endsection

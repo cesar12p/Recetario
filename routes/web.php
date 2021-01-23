@@ -31,8 +31,6 @@ Route::get('/home/edit/{id}', function (Request $request) {
     return view('editRecipe',['Datos'=>$Recipe]);
 })->name('home.edit');
 Route::post('/home/save','HomeController@editRecipe')->name('home.saveEdit');
-
-
 Route::get('/home/delete/{id}', 'HomeController@destroy')->name('home.delete');
 Route::get('/home/see/{id}', 'recipeController@see')->name('home.see');
 Route::get('/home/see/fetch_image/{id}','recipeController@fetch_image');

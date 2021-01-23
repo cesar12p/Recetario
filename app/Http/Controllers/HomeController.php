@@ -36,9 +36,9 @@ class HomeController extends Controller
     public function store(Request $request){
         $request->validate([
             'title' => 'required|string|max:255',
-            'image' => 'required|image|max:2048|mimes:jpg,jpeg,bmp,png',
-            'ingredients' => 'required|string|max:2000',
-            'instructions' => 'required|string|max:2000',
+            'image' => 'required|image|max:40|mimes:jpg,jpeg,bmp,png',
+            'ingredients' => 'required|string|max:65000',
+            'instructions' => 'required|string|max:65000',
            ]);
         $id = Auth::id();
         $image_file = $request->image;
@@ -75,6 +75,11 @@ class HomeController extends Controller
     }
 
     public function editRecipe(Request $request){
+        $request->validate([
+            'title' => 'required|string|max:255',
+            'ingredients' => 'required|string|max:65000',
+            'instructions' => 'required|string|max:65000',
+           ]);
         if($request->image==null){
             recipe::where('id', $request->idRecipe)
             ->update([
@@ -83,6 +88,9 @@ class HomeController extends Controller
                     'instructions'=>$request->instructions,
                     ]);
         }else{
+            $request->validate([
+                'image' => 'required|image|max:40|mimes:jpg,jpeg,bmp,png'
+            ]);
             $image_file = $request->image;
             $image = Image::make($image_file);
             Response::make($image->encode('jpeg'));
