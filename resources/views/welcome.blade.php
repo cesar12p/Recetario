@@ -13,12 +13,14 @@
             @foreach($recipes as $recipe)
                 <div class="col-4 py-3 px-lg-5 border bg-info text-white text-center">
                     <a class="text-white" href="{{route('home.see', $recipe->id)}}">
-                        <img src="publicRecipes/fetch_image/{{ $recipe->id }}"  class="rounded-circle" width="50%" />
+                        <img src="publicRecipes/fetch_image/{{ $recipe->id }}"  class="rounded-circle" style="height: 7rem;" width="100%" />
                         {{ $recipe->title}}
                     </a>
-                </div>   
-                                                  
-            @endforeach                    
+                </div>                          
+            @endforeach     
+        </div>
+        <div class="col-12 text-center">
+            {{ $recipes->links() }}
         </div>
     </div>
 @endsection

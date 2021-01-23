@@ -29,16 +29,16 @@ class HomeController extends Controller
     public function index()
     {
         $id = Auth::id();
-        $recipes = recipe::where('user_id','=',$id)->get();
+        $recipes = recipe::where('user_id','=',$id)->paginate(3);
         return view('home',['recipes'=>$recipes]);
     }
 
     public function store(Request $request){
         $request->validate([
             'title' => 'required|string|max:255',
-            'image' => 'required|image|max:2048|mimes:jpg,jpeg,bmp,png',
-            'ingredients' => 'required|string|max:2000',
-            'instructions' => 'required|string|max:2000',
+            'image' => 'required|image|max:40|mimes:jpg,jpeg,bmp,png',
+            'ingredients' => 'required|string|max:65000',
+            'instructions' => 'required|string|max:65000',
            ]);
         $id = Auth::id();
         $image_file = $request->image;
@@ -51,9 +51,7 @@ class HomeController extends Controller
             'instructions'=>$request->instructions,
             'image'=>$image
         ]);
-        
         $recipes = recipe::where('user_id','=',$id)->get();
-        
         return redirect()->route('home');
     }
 
@@ -73,10 +71,15 @@ class HomeController extends Controller
     public function showRecipe(Request $request){
         $idRecipe = $request->id;
         $ShowMeThisRecipe = recipe::where('id','=',$idRecipe)->get();
-        return view('watchRecipe',['Recipes'=>$ShowMeThisRecipe]);
+        return view('watchrecipe',['Recipes'=>$ShowMeThisRecipe]);
     }
 
     public function editRecipe(Request $request){
+        $request->validate([
+            'title' => 'required|string|max:255',
+            'ingredients' => 'required|string|max:65000',
+            'instructions' => 'required|string|max:65000',
+           ]);
         if($request->image==null){
             recipe::where('id', $request->idRecipe)
             ->update([
@@ -85,6 +88,9 @@ class HomeController extends Controller
                     'instructions'=>$request->instructions,
                     ]);
         }else{
+            $request->validate([
+                'image' => 'required|image|max:40|mimes:jpg,jpeg,bmp,png'
+            ]);
             $image_file = $request->image;
             $image = Image::make($image_file);
             Response::make($image->encode('jpeg'));

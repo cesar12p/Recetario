@@ -17,8 +17,8 @@ class CreateRecipesTable extends Migration
             $table->bigIncrements('id');
             $table->unsignedBigInteger('user_id');
             $table->string('title');
-            $table->longText('ingredients');
-            $table->longText('instructions');
+            $table->longText('ingredients',65000);
+            $table->longText('instructions',65000);
             $table->binary('image');
             $table->foreign('user_id')->references('id')->on('users');
             $table->timestamps();
