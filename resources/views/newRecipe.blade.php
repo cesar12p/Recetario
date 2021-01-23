@@ -9,7 +9,7 @@
                 <form action="{{route('home.store')}}" method="POST" enctype="multipart/form-data">
                 <div class="card-header alert-dark">
                     Titulo
-                    <input class="form-control form-control-lg" name="title" type="text" placeholder="">
+                    <input class="form-control form-control-lg" name="title" type="text" placeholder="" value="{{old('title')}}">
                     @if ($errors->first('title'))
                     <div class="text-danger">{{$errors->first('title')}}</div>
                   @endif
@@ -19,14 +19,14 @@
                     <div class="row">
                         <div class="col-12 col-lg-6">
                             Igredientes
-                            <textarea class="form-control" name="ingredients" rows="3"></textarea>
+                            <textarea class="form-control" name="ingredients" rows="3">{{old('ingredients')}}</textarea>
                             @if ($errors->first('ingredients'))
-                            <div class="text-danger">{{$errors->first('ingredients')}}</div>
-                          @endif
+                                <div class="text-danger">{{$errors->first('ingredients')}}</div>
+                            @endif
                         </div>
                         <div class="col-12 col-lg-6">
                             Proceso
-                            <textarea class="form-control" name="instructions" rows="3"></textarea>
+                            <textarea class="form-control" name="instructions" rows="3">{{old('instructions')}}</textarea>
                             @if ($errors->first('instructions'))
                             <div class="text-danger">{{$errors->first('instructions')}}</div>
                           @endif

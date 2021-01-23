@@ -7,7 +7,10 @@
         <div class="col-md-11">
             <div class="card alert-info">
                 <div class="card-header alert-dark mb-3">
-                    <input  type="text" class="form-control text-center mb-3" name="title" value="{{$Datos[0]->title}}">
+                    <input  type="text" class="form-control text-center mb-3" name="title" value="{{old( 'title',$Datos[0]->title)}}">
+                    @if ($errors->first('title'))
+                        <div class="text-danger">{{$errors->first('title')}}</div>
+                    @endif
                 </div>
                 <div class="container ">
                     <div class="row ">
@@ -17,11 +20,17 @@
                         </div>
                         <div class="col-12 col-lg-6">
                             Ingredientes
-							<textarea class="form-control" aria-label="With textarea" name="ingredients" rows="5">{{$Datos[0]->ingredients}}</textarea>
+                            <textarea class="form-control" aria-label="With textarea" name="ingredients" rows="5">{{old( 'ingredients', $Datos[0]->ingredients)}}</textarea>
+                            @if ($errors->first('ingredients'))
+                                <div class="text-danger">{{$errors->first('ingredients')}}</div>
+                            @endif
                         </div>
                     	<div class="col-12 text-center mb-3 ">
                         	Proceso
-                        	<textarea class="form-control" aria-label="With textarea" name="instructions" rows="8">{{$Datos[0]->instructions}}</textarea>
+                            <textarea class="form-control" aria-label="With textarea" name="instructions" rows="8">{{old('instructions', $Datos[0]->instructions)}}</textarea>
+                            @if ($errors->first('instructions'))
+                                <div class="text-danger">{{$errors->first('instructions')}}</div>
+                            @endif
                         </div>
 					</div>
                 </div> 

@@ -77,6 +77,12 @@ class HomeController extends Controller
     }
 
     public function editRecipe(Request $request){
+        $request->validate([
+            'title' => 'required|string|max:255',
+            'image' => 'image|max:2048|mimes:jpg,jpeg,bmp,png',
+            'ingredients' => 'required|string|max:2000',
+            'instructions' => 'required|string|max:2000',
+           ]);
         if($request->image==null){
             recipe::where('id', $request->idRecipe)
             ->update([
