@@ -36,13 +36,13 @@ class HomeController extends Controller
     public function store(Request $request){
         $request->validate([
             'title' => 'required|string|max:255',
-            'image' => 'required|image|max:40|mimes:jpg,jpeg,bmp,png',
+            'image' => 'required|image|mimes:jpg,jpeg,bmp,png',
             'ingredients' => 'required|string|max:65000',
             'instructions' => 'required|string|max:65000',
            ]);
         $id = Auth::id();
         $image_file = $request->image;
-        $image = Image::make($image_file);
+        $image = Image::make($image_file)->resize(300, 300);
         Response::make($image->encode('jpeg'));
         recipe::create([
             'user_id'=>$id,
@@ -89,10 +89,10 @@ class HomeController extends Controller
                     ]);
         }else{
             $request->validate([
-                'image' => 'required|image|max:40|mimes:jpg,jpeg,bmp,png'
+                'image' => 'required|image|mimes:jpg,jpeg,bmp,png'
             ]);
             $image_file = $request->image;
-            $image = Image::make($image_file);
+            $image = Image::make($image_file)->resize(300, 300);
             Response::make($image->encode('jpeg'));
             recipe::where('id', $request->idRecipe)
             ->update([
