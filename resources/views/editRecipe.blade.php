@@ -16,11 +16,11 @@
                         <div class="container ">
                             <div class="row ">
                                 <div class="col-12 col-lg-6 text-center">
-                                    <img src="image/fetch_image/{{ $Datos[0]->id }}" class="rounded-circle mb-3"
-                                        width="50%" />
+                                    <div id="preview"><img src="image/fetch_image/{{ $Datos[0]->id }}"
+                                            class="rounded-circle mb-3" width="50%" /></div>
                                     <input type="file" name="image" id="file" />
                                     <hr>
-                                    <div id="preview"></div>
+
                                     @if ($errors->first('image'))
                                         <div class="text-danger">{{ $errors->first('image') }}</div>
                                     @endif
