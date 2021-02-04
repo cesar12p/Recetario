@@ -16,8 +16,9 @@
                         <div class="container ">
                             <div class="row ">
                                 <div class="col-12 col-lg-6 text-center">
-                                    <div id="preview"><img src="image/fetch_image/{{ $Datos[0]->id }}"
-                                            class="rounded-circle mb-3" width="50%" /></div>
+                                    <div id="preview" class="rounded-circle"><img
+                                            src="image/fetch_image/{{ $Datos[0]->id }}" class="rounded-circle mb-3"
+                                            width="50%" /></div>
                                     <input type="file" name="image" id="file" />
                                     <hr>
 

@@ -4,7 +4,7 @@ document.getElementById("file").onchange = function (e) {
     reader.onload = function () {
         let preview = document.getElementById('preview'),
             image = document.createElement('img');
-
+        image.classList.add("rounded-circle");
         image.src = reader.result;
 
         preview.innerHTML = '';
