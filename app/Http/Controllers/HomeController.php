@@ -9,6 +9,9 @@ use Illuminate\Support\Facades\Response;
 use App\Images;
 use Image;
 use DB;
+use App\Http\Resources\ReciperResource;
+use Illuminate\Http\Resources\Json\ResourceCollection;
+
 class HomeController extends Controller
 {
     /**
@@ -18,14 +21,19 @@ class HomeController extends Controller
      */
     public function __construct()
     {
-        $this->middleware('auth');
+      //  $this->middleware('auth');
     }
 
-    /**
-     * Show the application dashboard.
-     *
-     * @return \Illuminate\Contracts\Support\Renderable
-     */
+    
+    public function getApi()
+    {
+       
+        
+    
+        return new ReciperResource(recipe::where('id',1)->first());
+    }
+        
+
     public function index()
     {
         $id = Auth::id();
