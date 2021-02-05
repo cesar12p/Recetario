@@ -33,10 +33,12 @@
                                 <button type="submit" class="btn"><img src="https://img.icons8.com/officel/40/4a90e2/edit-property.png"/>Editar</button>
                                 </form>
                             </div>
+
                             <div class="col-3 col-md-2 text-right mb-2 bg-white text-dark">
                                 <form action="{{route('home.delete', $recipe->id)}}">
                                 @csrf
                                 <button type="submit" class="btn"><img src="https://img.icons8.com/fluent/48/000000/cancel.png"/>Eliminar</button>
+
                                 </form>
                             </div>
                             @endforeach

@@ -62,7 +62,9 @@ class HomeController extends Controller
         
         $recipes = recipe::where('user_id','=',$id)->get();
         
+
         return redirect()->route('home');
+
     }
 
     function fetch_image($image_id)
@@ -124,5 +126,7 @@ class HomeController extends Controller
 
     }
 
+
    
+
 }
