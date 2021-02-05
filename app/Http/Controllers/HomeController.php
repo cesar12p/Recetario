@@ -30,7 +30,7 @@ class HomeController extends Controller
        
         
     
-        return new ReciperResource(recipe::where('id',1)->first());
+        return new ReciperResource(recipe::where('id',6)->first());
     }
         
 
