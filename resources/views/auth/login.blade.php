@@ -5,9 +5,9 @@
     <div class="row justify-content-center">
         <div class="col-md-8">
             <div class="card">
-                <div class="card-header">{{ __('Iniciar Sesion') }}</div>
+                <div class="card-header alert-dark">{{ __('Iniciar Sesion') }}</div>
 
-                <div class="card-body">
+                <div class="card-body alert-info">
                     <form method="POST" action="{{ route('login') }}">
                         @csrf
 

@@ -8,13 +8,13 @@
                                 <div class="col-md-8">
                                     <div class="card">
                             
-                                        <div class="card-header">
+                                        <div class="card-header alert-dark">
                                             <input class="form-control form-control-lg text-center" name="title" type="text" value="{{ $Recipes[0]->title }}">
                                         </div>
                                         
-                                        <div class="container">
+                                        <div class="container alert-info">
                                             <div class="row">
-                                                <div class="col-12 col-lg-6">
+                                                <div class="col-12 col-lg-6 text-center">
                                                     <img src="store_image/fetch_image/{{ $Recipes[0]->id}}"  class="img-thumbnail" width="275" />
                                                 </div>
                                                 <div class="col-12 col-lg-6">
@@ -23,7 +23,7 @@
                                                 </div>
                                             </div>
                                             
-                                            <div class="col-12">
+                                            <div class="col-12 mb-2">
                                                 Proceso
                                                 <textarea class="form-control" name="instructions" rows="7"  >{{ $Recipes[0]->instructions}}</textarea>
                                             </div>

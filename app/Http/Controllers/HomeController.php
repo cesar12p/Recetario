@@ -9,6 +9,9 @@ use Illuminate\Support\Facades\Response;
 use App\Images;
 use Image;
 use DB;
+use App\Http\Resources\ReciperResource;
+use Illuminate\Http\Resources\Json\ResourceCollection;
+
 class HomeController extends Controller
 {
     /**
@@ -18,14 +21,19 @@ class HomeController extends Controller
      */
     public function __construct()
     {
-        $this->middleware('auth');
+      //  $this->middleware('auth');
     }
 
-    /**
-     * Show the application dashboard.
-     *
-     * @return \Illuminate\Contracts\Support\Renderable
-     */
+    
+    public function getApi()
+    {
+       
+        
+    
+        return new ReciperResource(recipe::where('id',1)->first());
+    }
+        
+
     public function index()
     {
         $id = Auth::id();
@@ -35,7 +43,10 @@ class HomeController extends Controller
 
     public function store(Request $request){
         $request->validate([
-            'image' => 'required|image|max:2048'
+            'title' => 'required|string|max:255',
+            'image' => 'required|image|max:2048|mimes:jpg,jpeg,bmp,png',
+            'ingredients' => 'required|string|max:2000',
+            'instructions' => 'required|string|max:2000',
            ]);
         $id = Auth::id();
         $image_file = $request->image;
@@ -51,7 +62,9 @@ class HomeController extends Controller
         
         $recipes = recipe::where('user_id','=',$id)->get();
         
-        return view('home',['recipes'=>$recipes]);
+
+        return redirect()->route('home');
+
     }
 
     function fetch_image($image_id)
@@ -74,6 +87,12 @@ class HomeController extends Controller
     }
 
     public function editRecipe(Request $request){
+        $request->validate([
+            'title' => 'required|string|max:255',
+            'image' => 'image|max:2048|mimes:jpg,jpeg,bmp,png',
+            'ingredients' => 'required|string|max:2000',
+            'instructions' => 'required|string|max:2000',
+           ]);
         if($request->image==null){
             recipe::where('id', $request->idRecipe)
             ->update([
@@ -106,4 +125,8 @@ class HomeController extends Controller
         
 
     }
+
+
+   
+
 }
