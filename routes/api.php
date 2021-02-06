@@ -15,6 +15,7 @@ use App\Http\Controllers\HomeController;
 */
 
 Route::get('get-api', 'HomeController@getApi');
+Route::get('get-api-all', 'HomeController@getApiAllData');
 
 
 

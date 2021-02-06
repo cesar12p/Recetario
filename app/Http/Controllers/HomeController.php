@@ -8,9 +8,9 @@ use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Response;
 use App\Images;
 use Image;
-use DB;
 use App\Http\Resources\ReciperResource;
 use Illuminate\Http\Resources\Json\ResourceCollection;
+use Illuminate\Support\Facades\DB;
 
 class HomeController extends Controller
 {
@@ -31,6 +31,17 @@ class HomeController extends Controller
         
     
         return new ReciperResource(recipe::where('id',6)->first());
+    }
+
+    public function getApiAllData()
+    {
+       
+        //return DB::table('recipes')->get();
+        $data = DB::table('recipes')->get();
+    
+       //  return $data;
+
+        return ReciperResource::collection(recipe::all());
     }
         
 

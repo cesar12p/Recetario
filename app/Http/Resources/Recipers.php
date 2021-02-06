@@ -15,7 +15,12 @@ class Recipers extends ResourceCollection
     public function toArray($request)
     {
         return [
-            'data' => $this->collection,
+            'id' => $this->id,
+            'user_id' => $this->user_id,
+            'title' => $this->title,
+            'ingredients' => $this->ingredients,
+            'instructions' => $this->instructions,
+            'instructions' => $this->instructions,
         ];
     }
 }
